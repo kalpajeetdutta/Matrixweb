@@ -20,6 +20,7 @@ export default function Carousel({
     const slideInterval = setInterval(next, autoSlideInterval)
     return () => clearInterval(slideInterval)
   }, [])
+
   return (
     <div className="overflow-hidden relative max-w-[80%] h-full">
       <div
@@ -28,7 +29,7 @@ export default function Carousel({
       >
         {slides.map((slide, i) => {
             return(
-                <Image key={i} src={slide} alt="profile-pic"
+                <Image key={i} src={slide} alt={`profile-pic${i}`} priority={true}
                 className="w-full h-full rounded-lg object-cover object-center"
                 />
             )
@@ -38,6 +39,7 @@ export default function Carousel({
         <div className="flex items-center justify-center gap-2">
           {slides.map((_, i) => (
             <div
+              key={i}
               className={`
               transition-all w-3 h-3 bg-gray-100 rounded-full
               ${curr === i ? "px-3" : "bg-opacity-50"}
